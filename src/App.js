@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import TemperatureTab from './components/TemperatureTab';
 import HumidityTab from './components/HumidityTab';
@@ -10,6 +11,7 @@ function App() {
   return (
     <Router>
       <div className="app">
+        <div className="background-animation" />
         <Navbar />
         <div className="tabs">
           <NavLink to="/temperature" className={({ isActive }) => (isActive ? 'active-tab' : 'tab')}>Temperature</NavLink>
@@ -25,6 +27,19 @@ function App() {
         </div>
       </div>
     </Router>
+  );
+}
+
+function Card({ title, value }) {
+  return (
+    <motion.div
+      className="card"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+    >
+      <h3>{title}</h3>
+      <p>{value}</p>
+    </motion.div>
   );
 }
 
